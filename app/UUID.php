@@ -2,7 +2,7 @@
 
 namespace App;
 
-mt_srand(crc32(serialize(array(microtime(true), self::getRemoteAddress(), session_id()))));
+mt_srand(crc32(serialize(array(microtime(true), UUID::getRemoteAddress(), session_id()))));
 
 class UUID
 {
@@ -56,7 +56,7 @@ class UUID
      * returns the remote ip (client ip) of the user
      * @return string
      */
-    protected static function getRemoteAddress()
+    public static function getRemoteAddress()
     {
 
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
