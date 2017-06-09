@@ -1,11 +1,12 @@
 # project specific directory
-config.php
-vendor/
-tmp/*
-propel/propel.xml
-propel/generated-conf/*
 config/settings.php
-
+propel/generated-conf/
+propel/generated-migrations/
+propel/generated-sql/
+propel/propel.xml
+tmp/*
+!tmp/README.md
+vendor/
 
 # editor specific directory
 .DS_STORE

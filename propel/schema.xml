@@ -3,7 +3,9 @@
           xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
           namespace=""
         >
+
     <behavior name="timestampable"/>
+
     <table name="user" phpName="User">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
         <column name="first_name" type="varchar" size="255" required="true" phpName="FirstName"/>
@@ -12,4 +14,5 @@
         <column name="password" type="varchar" size="255" required="true" phpName="Password"/>
         <column name="uuid" type="varchar" size="255" required="true" phpName="UUID"/>
     </table>
+
 </database>
