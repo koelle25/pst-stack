@@ -21,6 +21,7 @@ After you have installed Composer, run these command from the directory in which
 
 ```bash
 $ git clone https://github.com/koelle25/pst-stack [your-app-name]
+$ cd [your-app-name]
 $ composer install
 ```
 
