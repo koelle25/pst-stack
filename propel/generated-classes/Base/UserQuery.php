@@ -92,7 +92,7 @@ abstract class UserQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'pst-stack', $modelName = '\\User', $modelAlias = null)
+    public function __construct($dbName = 'account-request', $modelName = '\\User', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }
@@ -140,21 +140,27 @@ abstract class UserQuery extends ModelCriteria
         if ($key === null) {
             return null;
         }
-        if ((null !== ($obj = UserTableMap::getInstanceFromPool(null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key))) && !$this->formatter) {
-            // the object is already in the instance pool
-            return $obj;
-        }
+
         if ($con === null) {
             $con = Propel::getServiceContainer()->getReadConnection(UserTableMap::DATABASE_NAME);
         }
+
         $this->basePreSelect($con);
-        if ($this->formatter || $this->modelAlias || $this->with || $this->select
-         || $this->selectColumns || $this->asColumns || $this->selectModifiers
-         || $this->map || $this->having || $this->joins) {
+
+        if (
+            $this->formatter || $this->modelAlias || $this->with || $this->select
+            || $this->selectColumns || $this->asColumns || $this->selectModifiers
+            || $this->map || $this->having || $this->joins
+        ) {
             return $this->findPkComplex($key, $con);
-        } else {
-            return $this->findPkSimple($key, $con);
         }
+
+        if ((null !== ($obj = UserTableMap::getInstanceFromPool(null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key)))) {
+            // the object is already in the instance pool
+            return $obj;
+        }
+
+        return $this->findPkSimple($key, $con);
     }
 
     /**
@@ -307,11 +313,10 @@ abstract class UserQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByFirstName('fooValue');   // WHERE first_name = 'fooValue'
-     * $query->filterByFirstName('%fooValue%'); // WHERE first_name LIKE '%fooValue%'
+     * $query->filterByFirstName('%fooValue%', Criteria::LIKE); // WHERE first_name LIKE '%fooValue%'
      * </code>
      *
      * @param     string $firstName The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
@@ -321,9 +326,6 @@ abstract class UserQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($firstName)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $firstName)) {
-                $firstName = str_replace('*', '%', $firstName);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -336,11 +338,10 @@ abstract class UserQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByLastName('fooValue');   // WHERE last_name = 'fooValue'
-     * $query->filterByLastName('%fooValue%'); // WHERE last_name LIKE '%fooValue%'
+     * $query->filterByLastName('%fooValue%', Criteria::LIKE); // WHERE last_name LIKE '%fooValue%'
      * </code>
      *
      * @param     string $lastName The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
@@ -350,9 +351,6 @@ abstract class UserQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($lastName)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $lastName)) {
-                $lastName = str_replace('*', '%', $lastName);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -365,11 +363,10 @@ abstract class UserQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByEmail('fooValue');   // WHERE email = 'fooValue'
-     * $query->filterByEmail('%fooValue%'); // WHERE email LIKE '%fooValue%'
+     * $query->filterByEmail('%fooValue%', Criteria::LIKE); // WHERE email LIKE '%fooValue%'
      * </code>
      *
      * @param     string $email The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
@@ -379,9 +376,6 @@ abstract class UserQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($email)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $email)) {
-                $email = str_replace('*', '%', $email);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -394,11 +388,10 @@ abstract class UserQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByPassword('fooValue');   // WHERE password = 'fooValue'
-     * $query->filterByPassword('%fooValue%'); // WHERE password LIKE '%fooValue%'
+     * $query->filterByPassword('%fooValue%', Criteria::LIKE); // WHERE password LIKE '%fooValue%'
      * </code>
      *
      * @param     string $password The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
@@ -408,9 +401,6 @@ abstract class UserQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($password)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $password)) {
-                $password = str_replace('*', '%', $password);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -423,11 +413,10 @@ abstract class UserQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByUUID('fooValue');   // WHERE uuid = 'fooValue'
-     * $query->filterByUUID('%fooValue%'); // WHERE uuid LIKE '%fooValue%'
+     * $query->filterByUUID('%fooValue%', Criteria::LIKE); // WHERE uuid LIKE '%fooValue%'
      * </code>
      *
      * @param     string $uUID The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
@@ -437,9 +426,6 @@ abstract class UserQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($uUID)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $uUID)) {
-                $uUID = str_replace('*', '%', $uUID);
-                $comparison = Criteria::LIKE;
             }
         }
 

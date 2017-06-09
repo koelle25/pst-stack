@@ -1,4 +1,5 @@
 <?php
+
 return [
     'app' => [
         'name' => 'PST-Stack',
@@ -6,11 +7,12 @@ return [
         'host' => 'localhost',  //application hostname
         'port' => 80,   //Application web port
         'encoding' => ['mb_internal_encoding' => 'UTF-8', 'mb_http_output' => 'UTF-8'],
-        'timezone' => 'Asia/Dhaka', //Your timezone
+        'timezone' => 'Europe/Berlin', //Your timezone
+        'debug' => true,
         'root_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR,
         'tmp_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR,
         'template' => [
-            'dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'templates',
+            'dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views',
             'cache' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 'cache',
             'debug' => true,
             'auto_reload' => true

@@ -14,5 +14,12 @@ use Base\User as BaseUser;
  */
 class User extends BaseUser
 {
+    public function updatePassword($v)
+    {
+        $v = password_hash($v, PASSWORD_DEFAULT);
 
+        parent::setPassword($v);
+
+        return parent::save();
+    }
 }

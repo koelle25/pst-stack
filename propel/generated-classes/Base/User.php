@@ -26,8 +26,8 @@ use Propel\Runtime\Util\PropelDateTime;
  *
  *
  *
-* @package    propel.generator..Base
-*/
+ * @package    propel.generator..Base
+ */
 abstract class User implements ActiveRecordInterface
 {
     /**
@@ -107,14 +107,14 @@ abstract class User implements ActiveRecordInterface
     /**
      * The value for the created_at field.
      *
-     * @var        \DateTime
+     * @var        DateTime
      */
     protected $created_at;
 
     /**
      * The value for the updated_at field.
      *
-     * @var        \DateTime
+     * @var        DateTime
      */
     protected $updated_at;
 
@@ -427,7 +427,7 @@ abstract class User implements ActiveRecordInterface
         if ($format === null) {
             return $this->created_at;
         } else {
-            return $this->created_at instanceof \DateTime ? $this->created_at->format($format) : null;
+            return $this->created_at instanceof \DateTimeInterface ? $this->created_at->format($format) : null;
         }
     }
 
@@ -447,7 +447,7 @@ abstract class User implements ActiveRecordInterface
         if ($format === null) {
             return $this->updated_at;
         } else {
-            return $this->updated_at instanceof \DateTime ? $this->updated_at->format($format) : null;
+            return $this->updated_at instanceof \DateTimeInterface ? $this->updated_at->format($format) : null;
         }
     }
 
@@ -574,7 +574,7 @@ abstract class User implements ActiveRecordInterface
     /**
      * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
-     * @param  mixed $v string, integer (timestamp), or \DateTime value.
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
      *               Empty strings are treated as NULL.
      * @return $this|\User The current object (for fluent API support)
      */
@@ -582,7 +582,7 @@ abstract class User implements ActiveRecordInterface
     {
         $dt = PropelDateTime::newInstance($v, null, 'DateTime');
         if ($this->created_at !== null || $dt !== null) {
-            if ($this->created_at === null || $dt === null || $dt->format("Y-m-d H:i:s") !== $this->created_at->format("Y-m-d H:i:s")) {
+            if ($this->created_at === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->created_at->format("Y-m-d H:i:s.u")) {
                 $this->created_at = $dt === null ? null : clone $dt;
                 $this->modifiedColumns[UserTableMap::COL_CREATED_AT] = true;
             }
@@ -594,7 +594,7 @@ abstract class User implements ActiveRecordInterface
     /**
      * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
      *
-     * @param  mixed $v string, integer (timestamp), or \DateTime value.
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
      *               Empty strings are treated as NULL.
      * @return $this|\User The current object (for fluent API support)
      */
@@ -602,7 +602,7 @@ abstract class User implements ActiveRecordInterface
     {
         $dt = PropelDateTime::newInstance($v, null, 'DateTime');
         if ($this->updated_at !== null || $dt !== null) {
-            if ($this->updated_at === null || $dt === null || $dt->format("Y-m-d H:i:s") !== $this->updated_at->format("Y-m-d H:i:s")) {
+            if ($this->updated_at === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->updated_at->format("Y-m-d H:i:s.u")) {
                 $this->updated_at = $dt === null ? null : clone $dt;
                 $this->modifiedColumns[UserTableMap::COL_UPDATED_AT] = true;
             }
@@ -798,28 +798,32 @@ abstract class User implements ActiveRecordInterface
             throw new PropelException("You cannot save an object that has been deleted.");
         }
 
+        if ($this->alreadyInSave) {
+            return 0;
+        }
+
         if ($con === null) {
             $con = Propel::getServiceContainer()->getWriteConnection(UserTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
-            $isInsert = $this->isNew();
             $ret = $this->preSave($con);
+            $isInsert = $this->isNew();
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
                 // timestampable behavior
 
                 if (!$this->isColumnModified(UserTableMap::COL_CREATED_AT)) {
-                    $this->setCreatedAt(time());
+                    $this->setCreatedAt(\Propel\Runtime\Util\PropelDateTime::createHighPrecision());
                 }
                 if (!$this->isColumnModified(UserTableMap::COL_UPDATED_AT)) {
-                    $this->setUpdatedAt(time());
+                    $this->setUpdatedAt(\Propel\Runtime\Util\PropelDateTime::createHighPrecision());
                 }
             } else {
                 $ret = $ret && $this->preUpdate($con);
                 // timestampable behavior
                 if ($this->isModified() && !$this->isColumnModified(UserTableMap::COL_UPDATED_AT)) {
-                    $this->setUpdatedAt(time());
+                    $this->setUpdatedAt(\Propel\Runtime\Util\PropelDateTime::createHighPrecision());
                 }
             }
             if ($ret) {
@@ -947,10 +951,10 @@ abstract class User implements ActiveRecordInterface
                         $stmt->bindValue($identifier, $this->uuid, PDO::PARAM_STR);
                         break;
                     case 'created_at':
-                        $stmt->bindValue($identifier, $this->created_at ? $this->created_at->format("Y-m-d H:i:s") : null, PDO::PARAM_STR);
+                        $stmt->bindValue($identifier, $this->created_at ? $this->created_at->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
                     case 'updated_at':
-                        $stmt->bindValue($identifier, $this->updated_at ? $this->updated_at->format("Y-m-d H:i:s") : null, PDO::PARAM_STR);
+                        $stmt->bindValue($identifier, $this->updated_at ? $this->updated_at->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1076,11 +1080,11 @@ abstract class User implements ActiveRecordInterface
             $keys[6] => $this->getCreatedAt(),
             $keys[7] => $this->getUpdatedAt(),
         );
-        if ($result[$keys[6]] instanceof \DateTime) {
+        if ($result[$keys[6]] instanceof \DateTimeInterface) {
             $result[$keys[6]] = $result[$keys[6]]->format('c');
         }
 
-        if ($result[$keys[7]] instanceof \DateTime) {
+        if ($result[$keys[7]] instanceof \DateTimeInterface) {
             $result[$keys[7]] = $result[$keys[7]]->format('c');
         }
 
@@ -1450,6 +1454,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function preSave(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preSave')) {
+            return parent::preSave($con);
+        }
         return true;
     }
 
@@ -1459,7 +1466,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function postSave(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postSave')) {
+            parent::postSave($con);
+        }
     }
 
     /**
@@ -1469,6 +1478,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function preInsert(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preInsert')) {
+            return parent::preInsert($con);
+        }
         return true;
     }
 
@@ -1478,7 +1490,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function postInsert(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postInsert')) {
+            parent::postInsert($con);
+        }
     }
 
     /**
@@ -1488,6 +1502,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function preUpdate(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preUpdate')) {
+            return parent::preUpdate($con);
+        }
         return true;
     }
 
@@ -1497,7 +1514,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function postUpdate(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postUpdate')) {
+            parent::postUpdate($con);
+        }
     }
 
     /**
@@ -1507,6 +1526,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function preDelete(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preDelete')) {
+            return parent::preDelete($con);
+        }
         return true;
     }
 
@@ -1516,7 +1538,9 @@ abstract class User implements ActiveRecordInterface
      */
     public function postDelete(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postDelete')) {
+            parent::postDelete($con);
+        }
     }
 
 

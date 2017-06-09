@@ -5,9 +5,9 @@
             <connections>
                 <connection id="pst-stack">
                     <adapter>mysql</adapter>
-                    <dsn>mysql:host=127.0.0.1;port=3306;dbname=pst-stack</dsn>
-                    <user>root</user>
-                    <password>ltqpsmr7</password>
+                    <dsn>mysql:host=127.0.0.1;port=3306;dbname=DatabaseName</dsn>
+                    <user>DatabaseUsername</user>
+                    <password>DatabasePassword</password>
                     <settings>
                         <charset>utf8</charset>
                     </settings>
