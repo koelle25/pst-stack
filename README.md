@@ -37,7 +37,7 @@ Replace `[your-app-name]` with the desired directory name for your new applicati
   ```bash
   #go into your project root (e.g. /var/www/your-app-name)
   $ cd /var/www/your-app-name
-  $ cd /propel
+  $ cd propel
   $ ../vendor/propel/propel/bin/propel sql:build
   $ ../vendor/propel/propel/bin/propel model:build
   $ ../vendor/propel/propel/bin/propel config:convert
@@ -50,6 +50,14 @@ Replace `[your-app-name]` with the desired directory name for your new applicati
   #need once more composer install command to autoload newly generated propel classmap
   $ composer install
   $ chmod -R 777 tmp/
+  ```
+
+- Import the generated SQL file into your database, either by using phpMyAdmin or on the command line:
+
+  ```bash
+  $ cd /var/www/your-app-name/propel/generated-sql
+  $ mysql -u [DatabaseUsername] -p [DatabaseName] < [DatabaseName].sql
+  Password: [DatabasePassword]
   ```
 
 That's it! Now go build something cool. Go to your browser and type your application host (according to your virtual host). You can signup and login into the application by yourself.
