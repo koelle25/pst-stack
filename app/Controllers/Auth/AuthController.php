@@ -3,11 +3,11 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\Controller;
-use Respect\Validation\Validator as v;
+use App\Models\User;
 use App\UUID;
+use Respect\Validation\Validator as v;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use User;
 
 class AuthController extends Controller
 {

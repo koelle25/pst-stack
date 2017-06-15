@@ -16,7 +16,7 @@ require 'encoding.php';
 require 'timezone.php';
 
 #Database Configuration
-require 'database.php';
+require '../propel/generated-conf/config.php';
 
 #SLIM instantiate
 require 'app.php';

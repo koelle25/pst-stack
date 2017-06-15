@@ -1,7 +1,7 @@
-<database name="pst-stack" defaultIdMethod="native"
+<database name="default" defaultIdMethod="native"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
-          namespace=""
+          namespace="App\Models"
         >
 
     <behavior name="timestampable"/>

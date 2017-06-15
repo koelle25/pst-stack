@@ -2,7 +2,7 @@
 
 namespace App\Auth;
 
-use UserQuery;
+use App\Models\UserQuery;
 
 class Auth
 {

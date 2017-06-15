@@ -2,8 +2,8 @@
 
 namespace App\Validation\Rules;
 
+use App\Models\UserQuery;
 use Respect\Validation\Rules\AbstractRule;
-use UserQuery;
 
 class EmailAvailable extends AbstractRule
 {
