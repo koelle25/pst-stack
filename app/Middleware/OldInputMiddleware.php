@@ -5,9 +5,20 @@ namespace App\Middleware;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+/**
+ * Old Input Middleware
+ *
+ * The class keeps input data from forms etc. between requests so the user doesn't have to enter
+ * all information again and again.
+ *
+ * Just attach it to the Slim App and you're ready to use {{ old.<inputName> }} in the Twig Views.
+ *
+ * Class OldInputMiddleware
+ * @package App\Middleware
+ */
 class OldInputMiddleware extends Middleware
 {
-    function __invoke(Request $request, Response $response, $next)
+    function __invoke(Request $request, Response $response, callable $next)
     {
         // Navigated to another page, empty the $_SESSION['old'] array
         if (isset($_SESSION['old_path']) && $_SESSION['old_path'] !== $request->getRequestTarget()) {
