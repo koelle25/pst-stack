@@ -36,7 +36,7 @@ class OldInputMiddleware extends Middleware
         } else {
             $requestParams = $request->getParams();
             foreach ($requestParams as $key => $value) {
-                if (isset($_SESSION['old'][$key]) || $_SESSION['old'][$key] !== $value) {
+                if (!isset($_SESSION['old'][$key]) || $_SESSION['old'][$key] !== $value) {
                     $_SESSION['old'][$key] = $value;
                 }
             }
