@@ -2,13 +2,17 @@
 
 namespace App\Auth;
 
-use UserQuery;
+use App\Models\UserQuery;
 
 class Auth
 {
     public function user()
     {
-        return UserQuery::create()->findOneByUUID($_SESSION['user']);
+        if ($this->check()) {
+            return UserQuery::create()->findOneByUUID($_SESSION['user']);
+        }
+
+        return null;
     }
 
     public function check()

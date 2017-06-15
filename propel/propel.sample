@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <config>
     <propel>
+        <general>
+            <project>PST-Stack</project>
+            <version>1.0.0</version>
+        </general>
+        <paths>
+            <phpDir>..</phpDir>
+            <composerDir>..</composerDir>
+        </paths>
         <database>
             <connections>
-                <connection id="pst-stack">
+                <connection id="default">
                     <adapter>mysql</adapter>
                     <dsn>mysql:host=127.0.0.1;port=3306;dbname=DatabaseName</dsn>
                     <user>DatabaseUsername</user>
@@ -14,5 +22,10 @@
                 </connection>
             </connections>
         </database>
+        <generator>
+            <schema>
+                <autoPackage>true</autoPackage>
+            </schema>
+        </generator>
     </propel>
 </config>

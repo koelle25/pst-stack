@@ -31,9 +31,10 @@ Replace `[your-app-name]` with the desired directory name for your new applicati
 - Configure Propel and generate it's ORM classes.
   - Copy/paste `config/settings.sample` => `config/settings.php`
   - Copy/paste `propel/propel.sample` => `propel/propel.xml`
-  - Replace all `DatabaseUsername`, `DatabasePassword`, `DatabaseName` in `config/settings.php` and `propel/propel.xml`
+  - Replace `DatabaseUsername`, `DatabasePassword`, `DatabaseName` in `propel/propel.xml`
+  - Edit `config/settings.php` according to your needs
   - Edit `propel/schema.xml` according to your needs
-- Now genereate Propel ORM classed by issuing the following commands:
+- Now generate Propel ORM classed by issuing the following commands:
 
   ```bash
   #go into your project root (e.g. /var/www/your-app-name)
@@ -44,12 +45,11 @@ Replace `[your-app-name]` with the desired directory name for your new applicati
   $ ../vendor/propel/propel/bin/propel config:convert
   ```
 
-- Again, go into your project root and make `/tmp` writable
+- Again, go into your project root, autoload newly generated propel classmap and make `/tmp` writable
 
   ```bash
   $ cd /var/www/your-app-name
-  #need once more composer install command to autoload newly generated propel classmap
-  $ composer install
+  $ composer dump-autoload
   $ chmod -R 777 tmp/
   ```
 

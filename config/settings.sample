@@ -2,28 +2,22 @@
 
 return [
     'app' => [
-        'name' => 'PST-Stack',
-        'namespace' => 'pst-stack',
-        'host' => 'localhost',  //application hostname
-        'port' => 80,   //Application web port
-        'encoding' => ['mb_internal_encoding' => 'UTF-8', 'mb_http_output' => 'UTF-8'],
-        'timezone' => 'Europe/Berlin', //Your timezone
-        'debug' => true,
-        'root_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR,
-        'tmp_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR,
-        'template' => [
-            'dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views',
-            'cache' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 'cache',
-            'debug' => true,
-            'auto_reload' => true
+        'name' => 'PST-Stack',              // Application name
+        'host' => 'localhost',              // Application hostname
+        'port' => 80,                       // Application web port
+        'encoding' => [
+            'mb_internal_encoding' => 'UTF-8',
+            'mb_http_output' => 'UTF-8'
         ],
-        'db' => [
-            'host' => '127.0.0.1',  //Your Database Hostname
-            'port' => '3306',   //Database Port
-            'username' => 'DatabaseUsername',   //Database Username
-            'password' => 'DatabasePassword',   //Database Password
-            'name' => 'DatabaseName',  //Database name
-            'charset' => 'utf8' //Database charset
+        'timezone' => 'Europe/Berlin',      // Your timezone
+        'debug' => true,                    // Output Slim errors on webpages
+        'root_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR,
+        'tmp_dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR,                  // Path to temp directory (for log files etc.)
+        'template' => [
+            'dir' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'views',  // Path to the twig template files
+            'cache' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR . 'cache',      // Set to false to disable caching
+            'debug' => true,                // Generated templates will have a __toString() method to display generated nodes
+            'auto_reload' => true           // Recompile the template whenever the source code changes
         ],
     ],
 ];

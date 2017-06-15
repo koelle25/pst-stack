@@ -28,7 +28,7 @@
   },
   "autoload": {
     "classmap": [
-      "propel/generated-classes/"
+      "app/"
     ],
     "psr-4": {
       "App\\": "app"
