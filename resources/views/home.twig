@@ -3,7 +3,26 @@
 {% block content %}
 
     {% include "templates/partials/flash.twig" %}
-    <br/><br/><br/>
-    <h1 class="app_name text-center text-uppercase"><i class="fa fa-bars"></i> PST-Stack</h1>
+
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0 col-lg-3">
+            <img src="{{ base_url() }}/img/PST-Stack.png" class="img-responsive center-block" alt="PST-Stack Logo">
+        </div>
+
+        <div class="col-xs-12 col-sm-8 col-lg-9">
+            <div class="page-header">
+                <h1>Propel-Slim-Twig PHP Application Stack.</h1>
+                <h1><small>The most sophisticated application stack for starting any PHP application in a minute.</small></h1>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>PST (Propel ORM - Slim Framework - Twig Template Engine) Stack in PHP is the most sophisticated stack to quickly build any kinds of PHP applicaiton. This open source application will let you create your application within maximum 120 seconds (2 minutes) without any hassle.</p>
+            <p>This stack was first created to quickly build any prototype or any quick but powerful web applicaiton within hour or day and after that I made it open source to make your work more easier.</p>
+            <p>It includes user authentication/registration and some useful middleware (authenticated-/guest-only routes, CSRF, validation, saving old form input across requests).</p>
+        </div>
+    </div>
 
 {% endblock %}
