@@ -1,6 +1,6 @@
 <?php
 
-use App\App;
+use Slim\Container;
 use Respect\Validation\Validator as v;
 
 #SLIM instantiate
@@ -13,13 +13,13 @@ $app = new \Slim\App([
 $container = $app->getContainer();
 
 // Dependencies
-$container['auth'] = function ($container) {
+$container['auth'] = function () {
     return new \App\Auth\Auth();
 };
 $container['flash'] = function () {
     return new \Slim\Flash\Messages();
 };
-$container['view'] = function ($container) use ($conf) {
+$container['view'] = function (Container $container) use ($conf) {
     $view = new \Slim\Views\Twig(
         $conf['app.template.dir'],
         [
@@ -30,8 +30,8 @@ $container['view'] = function ($container) use ($conf) {
     );
     $view->addExtension(
         new \Slim\Views\TwigExtension(
-            $container['router'],
-            $container['request']->getUri()
+            $container->router,
+            $container->request->getUri()
         )
     );
     $view->addExtension(
@@ -64,24 +64,24 @@ $container['errorLogger'] = function () use ($conf) {
 
     return $logger;
 };
-$container['errorHandler'] = function ($container) {
+$container['errorHandler'] = function (Container $container) {
     return new \App\Handlers\Error($container->errorLogger);
 };
-$container['csrf'] = function ($container) {
+$container['csrf'] = function () {
     return new \Slim\Csrf\Guard();
 };
-$container['validator'] = function ($container) {
+$container['validator'] = function () {
     return new \App\Validation\Validator();
 };
 
 // Controllers
-$container['HomeController'] = function ($container) {
+$container['HomeController'] = function (Container $container) {
     return new \App\Controllers\HomeController($container);
 };
-$container['AuthController'] = function ($container) {
+$container['AuthController'] = function (Container $container) {
     return new \App\Controllers\Auth\AuthController($container);
 };
-$container['PasswordController'] = function ($container) {
+$container['PasswordController'] = function (Container $container) {
     return new \App\Controllers\Auth\PasswordController($container);
 };
 
