@@ -8,7 +8,7 @@ It includes user authentication/registration and some useful middleware (authent
 ## Installation
 
 ### Install Composer
-If you have not installed [Composer](https://getcomposer.org/), do that now.
+If you haven't installed [Composer](https://getcomposer.org/) yet, do that now.
 
 Under *nix I prefer to install Composer globally in `/usr/local/bin`, but you may also install Composer locally in your current working directory.
 
