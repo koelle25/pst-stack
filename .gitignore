@@ -1,4 +1,6 @@
-# project specific directory
+# project specific directories/files
+app/Models/Base/
+app/Models/Map/
 config/settings.php
 propel/generated-conf/
 propel/generated-migrations/
@@ -8,6 +10,6 @@ tmp/*
 !tmp/README.md
 vendor/
 
-# editor specific directory
+# editor specific directories/files
 .DS_STORE
 .idea/*
