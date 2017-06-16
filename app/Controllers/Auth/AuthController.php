@@ -91,4 +91,11 @@ class AuthController extends Controller
 
         return $response->withRedirect($this->router->pathFor('home'));
     }
+
+    public function getProfile(Request $request, Response $response)
+    {
+        return $this->view->render($response, 'auth/profile.twig', [
+            'user' => $this->auth->user()
+        ]);
+    }
 }

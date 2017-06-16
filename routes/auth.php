@@ -16,6 +16,8 @@ $app->group('/auth', function () use ($container) {
 
     $this->group('', function () {
 
+        $this->get('/profile', 'AuthController:getProfile')->setName('auth.profile');
+
         $this->get('/password/change', 'PasswordController:getChangePassword')->setName('auth.password.change');
         $this->post('/password/change', 'PasswordController:postChangePassword');
 
