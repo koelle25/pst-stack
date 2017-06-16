@@ -84,6 +84,9 @@ $container['AuthController'] = function (Container $container) {
 $container['PasswordController'] = function (Container $container) {
     return new \App\Controllers\Auth\PasswordController($container);
 };
+$container['AdminController'] = function (Container $container) {
+    return new \App\Controllers\AdminController($container);
+};
 
 // Middleware
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
