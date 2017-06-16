@@ -53,7 +53,7 @@ class TwigExtension extends \Twig_Extension
 
     public function isCurrentPath($name)
     {
-        return $this->pathFor($name) === ($this->uri->getBasePath() . '/' . preg_replace('/\/$/', '', $this->uri->getPath()));
+        return $this->pathFor($name) === ($this->uri->getBasePath() . '/' . rtrim($this->uri->getPath(), '/'));
     }
 
     /**
