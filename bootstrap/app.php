@@ -29,7 +29,7 @@ $container['view'] = function (Container $container) use ($conf) {
         ]
     );
     $view->addExtension(
-        new \Slim\Views\TwigExtension(
+        new \App\TwigExtension(
             $container->router,
             $container->request->getUri()
         )
