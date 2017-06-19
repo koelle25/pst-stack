@@ -161,4 +161,50 @@ class AdminController extends Controller
         $this->flash->addMessage('error', 'Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users', $args));
     }
+
+    public function getDeleteUser(Request $request, Response $response, $args)
+    {
+        $user = UserQuery::create()->findOneById($args['id']);
+
+        if ($_SESSION['user'] == $user->getUUID()) {
+            $this->flash->addMessage('error', '<strong>Error!</strong> Cannot delete currently signed in user.');
+
+            return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        return $this->container->view->render($response, 'admin/users/delete.twig', [
+            'isAdministration' => true,
+            'isUserAdministration' => true,
+            'user' => $user
+        ]);
+    }
+
+    public function deleteUser(Request $request, Response $response, $args)
+    {
+        if ($request->getParam('commit') !== null) {
+            $user = UserQuery::create()->findOneById($args['id']);
+
+            if ($_SESSION['user'] == $user->getUUID()) {
+                $this->flash->addMessage('error', '<strong>Error!</strong> Cannot delete currently signed in user.');
+
+                return $response->withRedirect($this->router->pathFor('admin.users'));
+            }
+
+            $user->delete();
+
+            $this->flash->addMessage('success',
+                '<strong>Done!</strong>' .
+                ' User <em>'.$user->getEmail().'</em> deleted successfully.'
+            );
+
+             return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        if ($request->getParam('cancel') !== null) {
+            return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        $this->flash->addMessage('error', '<strong>Error!</strong> Sorry, something went wrong');
+        return $response->withRedirect($this->router->pathFor('admin.users'));
+    }
 }

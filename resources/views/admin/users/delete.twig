@@ -1,0 +1,46 @@
+{% extends 'templates/admin-layout.twig' %}
+
+{% block content %}
+    <div id="page-wrapper">
+        <div id="content-wrapper">
+            {% include "templates/partials/flash.twig" %}
+
+            <div class="panel panel-{{ errors ? 'danger' : 'default' }}">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Delete user</h3>
+                </div>
+                <form action="{{ path_for('admin.users.delete', {id: user.id}) }}" method="post">
+                    <div class="panel-body">
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">First Name</label>
+                                    <p class="form-control-static">{{ user.firstName }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Last Name</label>
+                                    <p class="form-control-static">{{ user.lastName }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">E-Mail-Address</label>
+                                    <p class="form-control-static">{{ user.email }}</p>
+                                </div>
+                            </div>
+                            {{ csrf.field | raw }}
+                            <input type="hidden" name="_METHOD" value="DELETE">
+                        </fieldset>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" name="commit" class="btn btn-danger">Confirm</button>
+                        <button type="submit" name="cancel" class="btn btn-default">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
