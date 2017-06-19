@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base\User as BaseUser;
+use RandomLib\Factory;
 
 /**
  * Skeleton subclass for representing a row from the 'user' table.
@@ -23,5 +24,13 @@ class User extends BaseUser
         parent::setPassword($newPassword);
 
         return parent::save();
+    }
+
+    public static function createPassword($length = 16)
+    {
+        $factory = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+        $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/.,-_?!';
+        return $generator->generateString($length, $alphabet);
     }
 }
