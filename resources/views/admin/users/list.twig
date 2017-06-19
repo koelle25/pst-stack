@@ -17,6 +17,12 @@
         <div id="content-wrapper">
             {% include "templates/partials/flash.twig" %}
 
+            <div class="row" style="margin-bottom: 15px">
+                <div class="col-xs-12">
+                    <a href="{{ path_for('admin.users.new') }}" class="btn btn-default pull-right">New User <i class="fa fa-user-plus"></i></a>
+                </div>
+            </div>
+
             {% if users %}
                 <table id="userTable" class="table table-striped table-bordered table-hover">
                     <thead>
