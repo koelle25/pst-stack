@@ -217,14 +217,14 @@
             {% endif %}
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user-circle-o fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     {% if auth.check %}
                         <li><span class="navbar-text">{{ auth.user.firstName }} {{ auth.user.lastName }}</span></li>
                         <li class="divider"></li>
                         <li{{ is_current_path('auth.profile') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <a href="{{ path_for('auth.profile') }}"><i class="fa fa-user-circle-o fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                         <li{{ is_current_path('auth.password.change') ? ' class="active"' : '' }}>
