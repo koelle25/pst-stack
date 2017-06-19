@@ -36,7 +36,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function postNewUser(Request $request, Response $response)
+    public function newUser(Request $request, Response $response)
     {
         $validation = $this->validator->validate($request, [
             'firstName' => v::notEmpty()->alpha('äöüß'),
@@ -95,7 +95,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function patchEditUser(Request $request, Response $response, $args)
+    public function editUser(Request $request, Response $response, $args)
     {
         $user = UserQuery::create()->findOneById($args['id']);
 

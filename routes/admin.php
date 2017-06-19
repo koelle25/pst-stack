@@ -11,12 +11,12 @@ $app->group('/admin', function () use ($container) {
         $this->get('', 'AdminController:getUserList')->setName('admin.users');
 
         $this->get('/new', 'AdminController:getNewUser')->setName('admin.users.new');
-        $this->post('/new', 'AdminController:postNewUser');
+        $this->post('/new', 'AdminController:newUser');
 
         $this->group('/{id}', function () {
 
             $this->get('/edit', 'AdminController:getEditUser')->setName('admin.users.edit');
-            $this->patch('/edit', 'AdminController:patchEditUser');
+            $this->patch('/edit', 'AdminController:editUser');
 
             $this->get('/reset-password', 'AdminController:resetPassword')->setName('admin.users.resetPassword');
 
