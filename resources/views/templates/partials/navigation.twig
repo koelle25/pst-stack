@@ -16,7 +16,7 @@
                 <a href="{{ path_for('home') }}">Home</a>
             </li>
             {% if auth.check %}
-                <li{{ is_current_path('admin.dashboard') ? ' class="active"' : '' }}>
+                <li{{ is_current_path('admin.dashboard') or isAdministration ? ' class="active"' : '' }}>
                     <a href="{{ path_for('admin.dashboard') }}">Administration</a>
                 </li>
             {% endif %}
