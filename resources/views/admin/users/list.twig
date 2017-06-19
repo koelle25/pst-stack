@@ -27,6 +27,7 @@
                 <table id="userTable" class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>E-Mail-Address</th>
@@ -36,6 +37,7 @@
                     <tbody>
                     {% for user in users %}
                         <tr>
+                            <td>{{ user.id }}</td>
                             <td>{{ user.firstName }}</td>
                             <td>{{ user.lastName }}</td>
                             <td>{{ user.email }}</td>
