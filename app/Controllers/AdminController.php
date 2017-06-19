@@ -45,7 +45,7 @@ class AdminController extends Controller
         ]);
 
         if ($validation->failed()) {
-            $this->flash->addMessage('error', 'Please check your input.');
+            $this->flash->addMessage('error', '<strong>Validation error(s)!</strong> Please check your input below.');
             return $response->withRedirect($this->router->pathFor('admin.users.new'));
         }
 
@@ -80,7 +80,7 @@ class AdminController extends Controller
             }
         }
 
-        $this->flash->addMessage('error', 'Sorry, something went wrong');
+        $this->flash->addMessage('error', '<strong>Error!</strong> Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users.new'));
     }
 
@@ -112,7 +112,7 @@ class AdminController extends Controller
         $validation = $this->validator->validate($request, $validationRules);
 
         if ($validation->failed()) {
-            $this->flash->addMessage('error', 'Please check your input.');
+            $this->flash->addMessage('error', '<strong>Validation error(s)!</strong> Please check your input below.');
             return $response->withRedirect($this->router->pathFor('admin.users.edit', $args));
         }
 
@@ -130,12 +130,12 @@ class AdminController extends Controller
         }
 
         if ($user->save()) {
-            $this->flash->addMessage('success', 'Editing user was successful.');
+            $this->flash->addMessage('success', '<strong>Done!</strong> Editing user was successful.');
 
             return $response->withRedirect($this->router->pathFor('admin.users'));
         }
 
-        $this->flash->addMessage('error', 'Sorry, something went wrong');
+        $this->flash->addMessage('error', '<strong>Error!</strong> Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users.edit', $args));
     }
 
@@ -158,7 +158,7 @@ class AdminController extends Controller
             return $response->withRedirect($this->router->pathFor('admin.users'));
         }
 
-        $this->flash->addMessage('error', 'Sorry, something went wrong');
+        $this->flash->addMessage('error', '<strong>Error!</strong> Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users', $args));
     }
 
