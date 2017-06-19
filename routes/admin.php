@@ -17,6 +17,8 @@ $app->group('/admin', function () use ($container) {
 
             $this->get('/edit', 'AdminController:getEditUser')->setName('admin.users.edit');
             $this->patch('/edit', 'AdminController:patchEditUser');
+
+            $this->get('/reset-password', 'AdminController:resetPassword')->setName('admin.users.resetPassword');
         });
     });
 })->add(new AuthMiddleware($container));

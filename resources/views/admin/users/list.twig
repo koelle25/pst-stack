@@ -43,6 +43,9 @@
                                 <a href="{{ path_for('admin.users.edit', {id: user.id}) }}" class="btn btn-primary" title="Edit user">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
+                                <a href="{{ path_for('admin.users.resetPassword', {id: user.id}) }}" class="btn btn-warning" title="Reset password">
+                                    <i class="fa fa-key"></i>
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}

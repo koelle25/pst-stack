@@ -62,7 +62,14 @@ class AdminController extends Controller
         $user->setUUID(UUID::v4());
 
         if ($user->save()) {
-            $this->flash->addMessage('success', 'User creation successful. The password is: <strong>'.$password.'</strong>');
+            $this->flash->addMessage('success',
+                '<strong>Done!</strong>' .
+                ' User <em>'.$user->getEmail().'</em> created successfully.' .
+                '<div class="input-group col-md-6 col-md-offset-3">' .
+                '<span class="input-group-addon">The password is:</span>' .
+                '<input type="text" class="form-control" readonly value="'.$password.'">' .
+                '</div>'
+            );
 
             if ($request->getParam('commit') !== null) {
                 return $response->withRedirect($this->router->pathFor('admin.users'));
@@ -130,5 +137,28 @@ class AdminController extends Controller
 
         $this->flash->addMessage('error', 'Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users.edit', $args));
+    }
+
+    public function resetPassword(Request $request, Response $response, $args)
+    {
+        $user = UserQuery::create()->findOneById($args['id']);
+
+        $newPassword = User::createPassword();
+
+        if ($user->updatePassword($newPassword)) {
+            $this->flash->addMessage('success',
+                '<strong>Done!</strong>' .
+                ' Password for <em>'.$user->getEmail().'</em> reset.' .
+                '<div class="input-group col-md-6 col-md-offset-3">' .
+                    '<span class="input-group-addon">New password:</span>' .
+                    '<input type="text" class="form-control" readonly value="'.$newPassword.'">' .
+                '</div>'
+            );
+
+            return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        $this->flash->addMessage('error', 'Sorry, something went wrong');
+        return $response->withRedirect($this->router->pathFor('admin.users', $args));
     }
 }
