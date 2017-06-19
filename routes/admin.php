@@ -12,5 +12,11 @@ $app->group('/admin', function () use ($container) {
 
         $this->get('/new', 'AdminController:getNewUser')->setName('admin.users.new');
         $this->post('/new', 'AdminController:postNewUser');
+
+        $this->group('/{id}', function () {
+
+            $this->get('/edit', 'AdminController:getEditUser')->setName('admin.users.edit');
+            $this->patch('/edit', 'AdminController:patchEditUser');
+        });
     });
 })->add(new AuthMiddleware($container));

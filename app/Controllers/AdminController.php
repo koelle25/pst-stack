@@ -76,4 +76,59 @@ class AdminController extends Controller
         $this->flash->addMessage('error', 'Sorry, something went wrong');
         return $response->withRedirect($this->router->pathFor('admin.users.new'));
     }
+
+    public function getEditUser(Request $request, Response $response, $args)
+    {
+        $user = UserQuery::create()->findOneById($args['id']);
+
+        return $this->container->view->render($response, 'admin/users/edit.twig', [
+            'isAdministration' => true,
+            'isUserAdministration' => true,
+            'user' => $user
+        ]);
+    }
+
+    public function patchEditUser(Request $request, Response $response, $args)
+    {
+        $user = UserQuery::create()->findOneById($args['id']);
+
+        $validationRules = [
+            'firstName' => v::notEmpty()->alpha('äöüß'),
+            'lastName' => v::notEmpty()->alpha('äöüß')
+        ];
+
+        $emailAddress = strtolower(filter_var($request->getParam('email'), FILTER_SANITIZE_STRING));
+        if ($user->getEmail() != $emailAddress) {
+            $validationRules['email'] = v::noWhitespace()->notEmpty()->email()->emailAvailable();
+        }
+
+        $validation = $this->validator->validate($request, $validationRules);
+
+        if ($validation->failed()) {
+            $this->flash->addMessage('error', 'Please check your input.');
+            return $response->withRedirect($this->router->pathFor('admin.users.edit', $args));
+        }
+
+        $firstName = filter_var($request->getParam('firstName'), FILTER_SANITIZE_STRING);
+        $lastName = filter_var($request->getParam('lastName'), FILTER_SANITIZE_STRING);
+
+        $user->setFirstName($firstName);
+        $user->setLastName($lastName);
+        $user->setEmail($emailAddress);
+
+        if (!$user->isModified()) {
+            $this->flash->addMessage('info', 'No attributes have been changed.');
+
+            return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        if ($user->save()) {
+            $this->flash->addMessage('success', 'Editing user was successful.');
+
+            return $response->withRedirect($this->router->pathFor('admin.users'));
+        }
+
+        $this->flash->addMessage('error', 'Sorry, something went wrong');
+        return $response->withRedirect($this->router->pathFor('admin.users.edit', $args));
+    }
 }

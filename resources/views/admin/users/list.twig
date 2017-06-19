@@ -39,7 +39,11 @@
                             <td>{{ user.firstName }}</td>
                             <td>{{ user.lastName }}</td>
                             <td>{{ user.email }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{ path_for('admin.users.edit', {id: user.id}) }}" class="btn btn-primary" title="Edit user">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
