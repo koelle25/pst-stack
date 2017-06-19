@@ -64,9 +64,11 @@ $container['errorLogger'] = function () use ($conf) {
 
     return $logger;
 };
-$container['errorHandler'] = function (Container $container) {
-    return new \App\Handlers\Error($container->errorLogger);
-};
+if (!$conf['app.debug']) {
+    $container['errorHandler'] = function (Container $container) {
+        return new \App\Handlers\Error($container->errorLogger);
+    };
+}
 $container['csrf'] = function () {
     return new \Slim\Csrf\Guard();
 };
