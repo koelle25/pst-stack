@@ -28,12 +28,6 @@
                                         <span class="help-block">{{ errors.password | first }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="checkbox">
-                                    <label class="control-label" for="remember">
-                                        <input type="checkbox" name="remember" id="remember" value="1" checked disabled>
-                                        Remember Me
-                                    </label>
-                                </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Sign in</button>
                                 {{ csrf.field | raw }}
                             </fieldset>
