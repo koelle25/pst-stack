@@ -7,7 +7,8 @@ use Respect\Validation\Validator as v;
 // The App itself
 $app = new \Slim\App([
     'settings' => [
-        'displayErrorDetails' => $conf['app.debug']
+        'displayErrorDetails' => $conf['app.debug'],
+        'addContentLengthHeader' => false
     ]
 ]);
 $container = $app->getContainer();
