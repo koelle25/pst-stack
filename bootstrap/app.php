@@ -92,7 +92,7 @@ $container['AdminController'] = function (Container $container) {
 
 // Middleware
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
-$app->add(new \App\Middleware\OldInputMiddleware($container));
+$app->add(new \App\Middleware\OldInputMiddleware($container, 'forget_old_input')); // If request contains queryParam <name>, don't save old input between requests
 $app->add(new \App\Middleware\CsrfViewMiddleware($container));
 $app->add((new \Psr7Middlewares\Middleware\TrailingSlash(false))->redirect(301)); // 'false' removes trailing slashes, 'true' adds them
 
