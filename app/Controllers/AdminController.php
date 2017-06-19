@@ -74,7 +74,8 @@ class AdminController extends Controller
             if ($request->getParam('commit') !== null) {
                 return $response->withRedirect($this->router->pathFor('admin.users'));
             }
-            elseif ($request->getParam('continue') !== null) {
+
+            if ($request->getParam('continue') !== null) {
                 $_SESSION['forget_old_input'] = true;
                 return $response->withRedirect($this->router->pathFor('admin.users.new'));
             }
