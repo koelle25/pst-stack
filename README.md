@@ -46,7 +46,7 @@ After you have installed Composer, run these commands from the directory in whic
         $ ../vendor/propel/propel/bin/propel config:convert
         ```
 
-- Again, go into your project root, autoload newly generated propel classmap and make `/tmp` writable
+6. Again, go into your project root, autoload newly generated propel classmap and make `/tmp` writable
 
     ```bash
     $ cd /var/www/your-app-name
@@ -54,7 +54,7 @@ After you have installed Composer, run these commands from the directory in whic
     $ chmod -R 777 tmp/
     ```
 
-- Import the generated SQL file into your database, either by using phpMyAdmin or on the command line:
+7. Import the generated SQL file into your database, either by using phpMyAdmin or on the command line:
 
     ```bash
     $ cd /var/www/your-app-name/propel/generated-sql
