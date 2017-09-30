@@ -6,7 +6,7 @@
             <version>1.0.0</version>
         </general>
         <paths>
-            <phpDir>..</phpDir>
+            <phpDir>../app/Models</phpDir>
             <composerDir>..</composerDir>
         </paths>
         <database>
@@ -26,6 +26,7 @@
             <schema>
                 <autoPackage>true</autoPackage>
             </schema>
+            <namespaceAutoPackage>false</namespaceAutoPackage>
         </generator>
     </propel>
 </config>
