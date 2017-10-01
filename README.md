@@ -44,6 +44,7 @@ After you have installed Composer, run these commands from the directory in whic
         $ ../vendor/propel/propel/bin/propel sql:build
         $ ../vendor/propel/propel/bin/propel model:build
         $ ../vendor/propel/propel/bin/propel config:convert
+        $ ../vendor/propel/propel/bin/propel sql:insert
         ```
 
 6. Again, go into your project root, autoload newly generated propel classmap and make `/tmp` writable
@@ -52,14 +53,6 @@ After you have installed Composer, run these commands from the directory in whic
     $ cd /var/www/your-app-name
     $ composer dump-autoload
     $ chmod -R 777 tmp/
-    ```
-
-7. Import the generated SQL file into your database, either by using phpMyAdmin or on the command line:
-
-    ```bash
-    $ cd /var/www/your-app-name/propel/generated-sql
-    $ mysql -u [DatabaseUsername] -p [DatabaseName] < [DatabaseName].sql
-    Password: [DatabasePassword]
     ```
 
 That's it! Now go build something cool. Go to your browser and type your application host (according to your virtual host). You can signup and login into the application by yourself.
