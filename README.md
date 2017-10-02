@@ -19,7 +19,7 @@ Under Windows I prefer the [Installer](https://getcomposer.org/doc/00-intro.md#u
 ### Install the Application
 After you have installed Composer, run these commands from the directory in which you want to install your new Propel-Slim-Twig Application stack.
 
-1. Clone this repository _(replace `[your-app-name]` with the desired directory name for your new application)_:
+1. Clone this repository _(replace `[your-app-name]` with the desired directory name for your new application)_:  
     ```bash
     $ git clone https://github.com/koelle25/pst-stack [your-app-name]
     $ cd [your-app-name]
@@ -27,7 +27,10 @@ After you have installed Composer, run these commands from the directory in whic
     ```
 
 2. Point your virtual host document root to your new application's `public/` directory  
-3. Create a database (e.g. MySQL/phpMyAdmin)  
+3. Create a database, e.g. by using [phpMyAdmin](https://docs.phpmyadmin.net/en/latest/) or on the command line. When using mysql you can do _(replace `[your-database-name]` with the desired database name for your new application)_:  
+    ```bash
+    $ mysql -u root -p create [your-database-name]
+    ```
 4. Configure Propel and generate it's ORM classes:  
     - Copy/paste `config/settings.sample` => `config/settings.php`
     - Copy/paste `propel/propel.sample` => `propel/propel.xml`
@@ -35,23 +38,24 @@ After you have installed Composer, run these commands from the directory in whic
     - Edit `config/settings.php` according to your needs
     - Edit `propel/schema.xml` according to your needs
 5. Now generate Propel ORM classed by issuing the following commands:
-    - go into the propel directory in your project root (e.g. /var/www/your-app-name)
+    - Go into the propel directory in your project root (e.g. /var/www/[your-app-name]):
         ```bash
-        $ cd /var/www/your-app-name/propel
+        $ cd /var/www/[your-app-name]/propel
         ```
-    - build sql, model and config and insert the schema into your database
+    - Build sql, model and config and insert the schema into your database:
         ```bash
         $ ../vendor/propel/propel/bin/propel sql:build
         $ ../vendor/propel/propel/bin/propel model:build
         $ ../vendor/propel/propel/bin/propel config:convert
         $ ../vendor/propel/propel/bin/propel sql:insert
-        ```
-
-6. Again, go into your project root, autoload newly generated propel classmap and make `/tmp` writable
-
+        ```  
+6. Again, go into your project root, autoload newly generated propel classmap:
     ```bash
-    $ cd /var/www/your-app-name
+    $ cd /var/www/[your-app-name]
     $ composer dump-autoload
+    ```
+7. _*nix only_: Make `tmp` writable:
+    ```bash
     $ chmod -R 777 tmp/
     ```
 
