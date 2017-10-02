@@ -39,7 +39,7 @@ After you have installed Composer, run these commands from the directory in whic
         ```bash
         $ cd /var/www/your-app-name/propel
         ```
-    - build sql, model and config
+    - build sql, model and config and insert the schema into your database
         ```bash
         $ ../vendor/propel/propel/bin/propel sql:build
         $ ../vendor/propel/propel/bin/propel model:build
