@@ -1,7 +1,7 @@
 # PST-Stack
-PST (Propel ORM - Slim Framework - Twig Template Engine) Stack in PHP is the most sophisticated stack to quickly build any kind of PHP application. This open source technology stack will let you create your application within maximum 120 seconds (2 minutes) without any hassle.
+PST (Propel ORM - Slim Framework - Twig Template Engine) Stack in PHP is the most sophisticated stack to quickly build any kind of PHP application. This open source technology stack will let you create your application within a maximum of 120 seconds (2 minutes) without any hassle.
 
-This stack was first created to quickly build any prototype or any quick but powerful web applicaiton within hours or a day and after that I made it open source to make your work more easy.
+This stack was first created to quickly build any prototype or any quick but powerful web application within hours or a day and after that I made it open source to make your work more easy.
 
 It includes user authentication/registration and some useful middleware (authenticated-/guest-only routes, CSRF, validation, saving old form input across requests).
 
@@ -31,6 +31,7 @@ After you have installed Composer, run these commands from the directory in whic
     ```bash
     $ mysql -u root -p create [your-database-name]
     ```
+
 4. Configure Propel and generate it's ORM classes:  
     - Copy/paste `config/settings.sample` => `config/settings.php`
     - Copy/paste `propel/propel.sample` => `propel/propel.xml`
@@ -58,7 +59,12 @@ After you have installed Composer, run these commands from the directory in whic
 That's it! Now go build something cool. Go to your browser and type your application host (according to your virtual host). You can signup and login into the application by yourself.
 
 ## Credits
-This stack is build upon following resources:
+This stack is built upon following resources:
 - [PreviewTechnologies/pst-stack](https://github.com/PreviewTechnologies/pst-stack)
 - [StyxOfDynamite/pst-stack](https://github.com/StyxOfDynamite/pst-stack)
 - [Codecourse/Authentication with Slim 3](https://www.youtube.com/playlist?list=PLfdtiltiRHWGc_yY90XRdq6mRww042aEC)
+- [Propel ORM](http://propelorm.org/)
+- [Slim Framework](https://www.slimframework.com/)
+- [Twig Template Engine](https://twig.symfony.com/)
+- [Bootstrap 4.0](http://getbootstrap.com/docs/4.0/)
+- [FontAwesome 5](https://fontawesome.com/)
