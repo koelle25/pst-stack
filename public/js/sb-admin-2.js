@@ -2,21 +2,26 @@
  * Start Bootstrap - SB Admin 2 v3.3.7+1 (http://startbootstrap.com/template-overviews/sb-admin-2)
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ *
+ * Modified by Kevin Köllmann (https://github.com/koelle25)
+ * to work with Bootstrap v4.0 Beta
  */
 $(function() {
-    $('#side-menu').metisMenu();
+    $('[data-toggle="offcanvas"]').on('click', function () {
+        $('.row-offcanvas').toggleClass('show');
+    });
 
     function addChatMessageLeft() {
-        $('.chat-panel .panel-body .chat').append(
+        $('.chat-card .card-body .chat').append(
             '<li class="left clearfix">' +
-                '<span class="chat-img pull-left">' +
+                '<span class="chat-img float-left">' +
                     '<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">' +
                 '</span>' +
                 '<div class="chat-body clearfix">' +
                     '<div class="header">' +
                         '<strong class="primary-font">Jack Sparrow</strong>' +
-                        '<small class="pull-right text-muted">' +
-                            '<i class="fa fa-clock-o fa-fw"></i> 12 mins ago' +
+                        '<small class="float-right text-muted">' +
+                            '<i class="far fa-clock fa-fw"></i> 12 mins ago' +
                         '</small>' +
                     '</div>' +
                     '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>' +
@@ -28,17 +33,17 @@ $(function() {
     }
 
     function addChatMessageRight() {
-        $('.chat-panel .panel-body .chat').append(
+        $('.chat-card .card-body .chat').append(
             '<li class="right clearfix">' +
-                '<span class="chat-img pull-right">' +
+                '<span class="chat-img float-right">' +
                     '<img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">' +
                 '</span>' +
                 '<div class="chat-body clearfix">' +
                     '<div class="header">' +
-                        '<small class="pull-right text-muted">' +
-                            '<i class="fa fa-clock-o fa-fw"></i> 11 mins ago' +
+                        '<small class="float-right text-muted">' +
+                            '<i class="far fa-clock fa-fw"></i> 11 mins ago' +
                         '</small>' +
-                        '<strong class="pull-right primary-font">Bhaumik Patel</strong>' +
+                        '<strong class="float-right primary-font">Bhaumik Patel</strong>' +
                     '</div>' +
                     '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>' +
                 '</div>' +
@@ -51,10 +56,10 @@ $(function() {
     window.setTimeout(addChatMessageLeft, 5000);
 
     function scrollToChatPanelEnd() {
-        $('.chat-panel .panel-body').animate({scrollTop: $('.chat-panel .panel-body .chat').height()}, 1000);
+        $('.chat-card .card-body').animate({scrollTop: $('.chat-card .card-body .chat').height()}, 1000);
     }
 
-    $('.chat-panel .panel-body .chat').on("heightChanged", scrollToChatPanelEnd);
+    $('.chat-card .card-body .chat').on("heightChanged", scrollToChatPanelEnd);
     scrollToChatPanelEnd();
 });
 

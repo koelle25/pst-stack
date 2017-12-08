@@ -45,6 +45,7 @@ $container['view'] = function (Container $container) use ($conf) {
         'check' => $container->auth->check(),
         'user' => $container->auth->user()
     ]);
+    $view->getEnvironment()->addGlobal('title', $conf['app.name']);
 
     return $view;
 };
