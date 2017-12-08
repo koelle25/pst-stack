@@ -2,45 +2,55 @@
 
 {% block content %}
     <div id="page-wrapper">
-        <div id="content-wrapper">
-            {% include "templates/partials/flash.twig" %}
+        {% include "templates/partials/flash.twig" %}
 
-            <div class="panel panel-{{ errors ? 'danger' : 'default' }}">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Delete user</h3>
-                </div>
-                <form action="{{ path_for('admin.users.delete', {id: user.id}) }}" method="post">
-                    <div class="panel-body">
-                        <fieldset>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">First Name</label>
-                                    <p class="form-control-static">{{ user.firstName }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Last Name</label>
-                                    <p class="form-control-static">{{ user.lastName }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">E-Mail-Address</label>
-                                    <p class="form-control-static">{{ user.email }}</p>
-                                </div>
-                            </div>
-                            {{ csrf.field | raw }}
-                            <input type="hidden" name="_METHOD" value="DELETE">
-                        </fieldset>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="submit" name="commit" class="btn btn-danger">Confirm</button>
-                        <button type="submit" name="cancel" class="btn btn-default">Cancel</button>
-                    </div>
-                </form>
+        <div class="card">
+            <div class="card-header">
+                <h3>Delete user</h3>
             </div>
+            <form action="{{ path_for('admin.users.delete', {id: user.id}) }}" method="post">
+                <div class="card-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">First Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext"
+                                               value="{{ user.firstName }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Last Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext"
+                                               value="{{ user.lastName }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">E-Mail-Address</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext"
+                                               value="{{ user.email }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ csrf.field | raw }}
+                        <input type="hidden" name="_METHOD" value="DELETE">
+                    </fieldset>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" name="commit" class="btn btn-raised btn-danger">Confirm</button>
+                    <button type="submit" name="cancel" class="btn btn-raised btn-secondary">Cancel</button>
+                </div>
+            </form>
         </div>
-    </div>
     </div>
 {% endblock %}

@@ -1,253 +1,298 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="{% block navbarStyles %}{% endblock %}">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{ path_for('home') }}">PST-Stack</a>
-    </div>
-
-    <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li{{ is_current_path('home') ? ' class="active"' : '' }}>
-                <a href="{{ path_for('home') }}">Home</a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="{% block navbarStyles %}{% endblock %}">
+    <a class="navbar-brand" href="{{ path_for('home') }}">IDM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item{{ is_current_path('home') ? ' active' : '' }}">
+                <a class="nav-link" href="{{ path_for('home') }}">Home <span class="sr-only">(current)</span></a>
             </li>
             {% if auth.check %}
-                <li{{ is_current_path('admin.dashboard') or isAdministration ? ' class="active"' : '' }}>
-                    <a href="{{ path_for('admin.dashboard') }}">Administration</a>
+                <li class="nav-item{{ is_current_path('admin.dashboard') or isAdministration ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ path_for('admin.dashboard') }}">Administration</a>
                 </li>
             {% endif %}
         </ul>
-
-        <ul class="nav navbar-top-links navbar-right">
+        <ul class="navbar-nav ml-auto">
             {% if auth.check %}
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="messageMenuDropdownButton" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" title="Messages">
+                        <i class="far fa-envelope fa-fw"></i> <span class="sr-only">Messages</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-messages"
+                         aria-labelledby="messageMenuDropdownButton">
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-2 px-1">
+                                    <img src="https://via.placeholder.com/50x50" alt="Placeholder Avatar"
+                                         class="round img-fluid">
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
+                                <div class="col-10 px-1">
+                                    <div class="row no-gutters">
+                                        <div class="col-7 px-1">
+                                            <strong>John Smith</strong>
+                                        </div>
+                                        <div class="col-5 px-1 text-right text-muted small">
+                                            <em>2 hours ago</em>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-12 px-1 message-body">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit. Pellentesque eleifend...
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-2 px-1">
+                                    <img src="https://via.placeholder.com/50x50" alt="Placeholder Avatar"
+                                         class="round img-fluid">
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
+                                <div class="col-10 px-1">
+                                    <div class="row no-gutters">
+                                        <div class="col-7 px-1">
+                                            <strong>Jane Doe</strong>
+                                        </div>
+                                        <div class="col-5 px-1 text-right">
+                                            <small class="text-muted">
+                                                <em>Yesterday</em>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-12 px-1 message-body">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit. Pellentesque eleifend...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-2 px-1">
+                                    <img src="https://via.placeholder.com/50x50" alt="Placeholder Avatar"
+                                         class="round img-fluid">
+                                </div>
+                                <div class="col-10 px-1">
+                                    <div class="row no-gutters">
+                                        <div class="col-7 px-1">
+                                            <strong>Russell Geer</strong>
+                                        </div>
+                                        <div class="col-5 px-1 text-right">
+                                            <small class="text-muted">
+                                                <em>4 days ago</em>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-12 px-1 message-body">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit. Pellentesque eleifend...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-center">
+                            <strong>Read All Messages</strong>
+                            <i class="fas fa-angle-right fa-fw"></i>
+                        </a>
+                    </div>
                 </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="taskMenuDropdownButton"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tasks">
+                        <i class="fas fa-tasks fa-fw"></i> <span class="sr-only">Tasks</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-alerts"
+                         aria-labelledby="taskMenuDropdownButton">
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters mb-1">
+                                <div class="col-6 px-1">
+                                    <strong>Task 1</strong>
+                                </div>
+                                <div class="col-6 px-1 text-muted text-right">
+                                    40% Complete
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-12 px-1">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                             role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 40%"></div>
                                     </div>
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters mb-1">
+                                <div class="col-6 px-1">
+                                    <strong>Task 2</strong>
+                                </div>
+                                <div class="col-6 px-1 text-muted text-right">
+                                    20% Complete
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-12 px-1">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                                             role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 20%"></div>
                                     </div>
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters mb-1">
+                                <div class="col-6 px-1">
+                                    <strong>Task 3</strong>
+                                </div>
+                                <div class="col-6 px-1 text-muted text-right">
+                                    60% Complete
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-12 px-1">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                                             role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 60%"></div>
                                     </div>
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters mb-1">
+                                <div class="col-6 px-1">
+                                    <strong>Task 4</strong>
+                                </div>
+                                <div class="col-6 px-1 text-muted text-right">
+                                    80% Complete
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="col-12 px-1">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                             role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 80%"></div>
                                     </div>
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-tasks -->
+                            </div>
+                        </a>
+                    </div>
                 </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle has-notification-icon" id="alertMenuDropdownButton"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Alerts">
+                        <i class="far fa-bell fa-fw"></i> <span class="badge badge-pill badge-primary">9</span> <span class="sr-only">Alerts</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-alerts"
+                         aria-labelledby="alertMenuDropdownButton">
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-8 px-1">
+                                    <i class="fas fa-comment fa-fw"></i> New Comment
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                <div class="col-4 px-1 text-right text-muted small">4 minutes ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-8 px-1">
+                                    <i class="fab fa-twitter fa-fw"></i> 3 New Followers
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                <div class="col-4 px-1 text-right text-muted small">12 minutes ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-8 px-1">
+                                    <i class="fas fa-envelope fa-fw"></i> Message Sent
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                <div class="col-4 px-1 text-right text-muted small">27 minutes ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-8 px-1">
+                                    <i class="fas fa-tasks fa-fw"></i> New Task
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                <div class="col-4 px-1 text-right text-muted small">43 minutes ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <div class="row no-gutters">
+                                <div class="col-8 px-1">
+                                    <i class="fas fa-upload fa-fw"></i> Server Rebooted
                                 </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
+                                <div class="col-4 px-1 text-right text-muted small">11:32 AM</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-center">
+                            <strong>See All Alerts</strong>
+                            <i class="fas fa-angle-right fa-fw"></i>
+                        </a>
+                    </div>
                 </li>
-                <!-- /.dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userMenuDropdownButton" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" title="User Menu">
+                        <i class="far fa-user-circle fa-fw"></i> {{ auth.user.firstName }} {{ auth.user.lastName }} <span class="sr-only">(User Menu)</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenuDropdownButton">
+                        <a href="{{ path_for('auth.profile') }}" class="dropdown-item">
+                            <i class="fas fa-user-circle fa-fw"></i> User Profile
+                        </a>
+                        <a href="{{ path_for('auth.password.change') }}" class="dropdown-item">
+                            <i class="fas fa-key fa-fw"></i> Change Password
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog fa-fw"></i> Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ path_for('auth.signout') }}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt fa-fw"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path_for('auth.signin') }}">
+                        <i class="fas fa-sign-in-alt fa-fw"></i> Sign in
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownUserMenuButton"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">User menu</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserMenuButton">
+                        <a href="{{ path_for('auth.signup') }}" class="dropdown-item">
+                            <i class="fas fa-user-plus fa-fw"></i> Register
+                        </a>
+                    </div>
+                </li>
             {% endif %}
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user-circle-o fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    {% if auth.check %}
-                        <li><span class="navbar-text">{{ auth.user.firstName }} {{ auth.user.lastName }}</span></li>
-                        <li class="divider"></li>
-                        <li{{ is_current_path('auth.profile') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.profile') }}"><i class="fa fa-user-circle-o fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
-                        <li{{ is_current_path('auth.password.change') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.password.change') }}"><i class="fa fa-key fa-fw"></i> Change password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li{{ is_current_path('auth.signout') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.signout') }}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a>
-                        </li>
-                    {% else %}
-                        <li{{ is_current_path('auth.signup') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.signup') }}"><i class="fa fa-user-plus fa-fw"></i> Sign up</a>
-                        </li>
-                        <li{{ is_current_path('auth.signin') ? ' class="active"' : '' }}>
-                            <a href="{{ path_for('auth.signin') }}"><i class="fa fa-sign-in fa-fw"></i> Sign in</a>
-                        </li>
-                    {% endif %}
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
         </ul>
     </div>
-
-    {% block navbarStaticSide %}{% endblock %}
 </nav>

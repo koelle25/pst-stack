@@ -49,13 +49,9 @@ After you have installed Composer, run these commands from the directory in whic
         $ ../vendor/propel/propel/bin/propel config:convert
         $ ../vendor/propel/propel/bin/propel sql:insert
         ```  
-6. Again, go into your project root, autoload newly generated propel classmap:
+6. _*nix only_: Make `tmp` writable:
     ```bash
     $ cd /var/www/[your-app-name]
-    $ composer dump-autoload
-    ```
-7. _*nix only_: Make `tmp` writable:
-    ```bash
     $ chmod -R 777 tmp/
     ```
 

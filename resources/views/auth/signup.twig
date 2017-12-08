@@ -6,40 +6,40 @@
         {% include "templates/partials/flash.twig" %}
 
         <div class="row">
-            <div class="col-md-offset-4 col-md-4">
-                <div class="login-panel panel panel-{{ errors ? 'danger' : 'default' }}">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Sign up</h3>
+            <div class="col-md-4 mx-md-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sign up</h3>
                     </div>
-                    <div class="panel-body">
-                        <form action="{{ path_for('auth.signup') }}" method="post">
+                    <div class="card-body">
+                        <form action="{{ path_for('auth.signup') }}" method="post" novalidate>
                             <fieldset>
-                                <div class="form-group{{ errors.firstName ? ' has-error' : '' }}">
-                                    <label class="control-label" for="firstName">First Name</label>
-                                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" value="{{ old.firstName }}" autofocus>
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" for="firstName">First Name</label>
+                                    <input name="firstName" type="text" class="form-control{{ errors.firstName ? ' is-invalid' : '' }}" id="firstName" placeholder="First Name" value="{{ old.firstName }}" autofocus>
                                     {% if errors.firstName %}
-                                        <span class="help-block">{{ errors.firstName | first }}</span>
+                                        <span class="invalid-feedback">{{ errors.firstName | first }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="form-group{{ errors.lastName ? ' has-error' : '' }}">
-                                    <label class="control-label" for="lastName">Last Name</label>
-                                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" value="{{ old.lastName }}">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" for="lastName">Last Name</label>
+                                    <input name="lastName" type="text" class="form-control{{ errors.lastName ? ' is-invalid' : '' }}" id="lastName" placeholder="Last Name" value="{{ old.lastName }}">
                                     {% if errors.lastName %}
-                                        <span class="help-block">{{ errors.lastName | first }}</span>
+                                        <span class="invalid-feedback">{{ errors.lastName | first }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="form-group{{ errors.email ? ' has-error' : '' }}">
-                                    <label class="control-label" for="email">E-Mail-Address</label>
-                                    <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail-Address" value="{{ old.email }}">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" for="email">E-Mail-Address</label>
+                                    <input name="email" type="text" class="form-control{{ errors.email ? ' is-invalid' : '' }}" id="email" placeholder="E-Mail-Address" value="{{ old.email }}">
                                     {% if errors.email %}
-                                        <span class="help-block">{{ errors.email | first }}</span>
+                                        <span class="invalid-feedback">{{ errors.email | first }}</span>
                                     {% endif %}
                                 </div>
-                                <div class="form-group{{ errors.password ? ' has-error' : '' }}">
-                                    <label class="control-label" for="password">Password</label>
-                                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="{{ old.password }}">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating" for="password">Password</label>
+                                    <input name="password" type="password" class="form-control{{ errors.password ? ' is-invalid' : '' }}" id="password" placeholder="Password" value="{{ old.password }}">
                                     {% if errors.password %}
-                                        <span class="help-block">{{ errors.password | first }}</span>
+                                        <span class="invalid-feedback">{{ errors.password | first }}</span>
                                     {% endif %}
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Create account</button>
@@ -47,7 +47,7 @@
                             </fieldset>
                         </form>
                     </div>
-                    <div class="panel-footer">
+                    <div class="card-footer">
                         <p>Already have account? <a href="{{ path_for('auth.signin') }}">Sign in</a></p>
                     </div>
                 </div>
