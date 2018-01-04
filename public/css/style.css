@@ -176,3 +176,8 @@ img.round {
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee;
 }
+
+.dropdown-toggle[aria-expanded=true]:after {
+    border-top: none;
+    border-bottom: .3em solid;
+}
